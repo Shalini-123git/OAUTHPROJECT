@@ -1,5 +1,5 @@
 
-const SERVER_URL = 'http://localhost:3000'
+const SERVER_URL = import.meta.env.SERVER_URL;
 
 export default function Login() {
   return (
