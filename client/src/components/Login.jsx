@@ -1,5 +1,5 @@
 
-const SERVER_URL = import.meta.env.SERVER_URL;
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 export default function Login() {
   return (

@@ -4,7 +4,7 @@ import SearchPage from './components/SearchPage'
 import TopSearchesBanner from './components/TopSearchesBanner'
 import History from './components/History'
 
-const SERVER_URL = import.meta.env.SERVER_URL;
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 export default function App() {
   const [user, setUser] = useState(null)
