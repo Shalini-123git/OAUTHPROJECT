@@ -1,23 +1,30 @@
 pipeline {
-	agent any
-	
-	stages {
-		stage('Build') {
-			steps {
-				echo 'Building Oauth project...'
-			}
-		}
-	
-		stage('Test') {
-			steps {
-				echo 'Testing Oauth peoject...'
-			}
-		}
-	
-		stage('Docker Build') {
-			steps {
-				sh 'docker compose build'
-			}
-		}
-	}
+    agent any
+
+    stages {
+
+        stage('Build') {
+            steps {
+                echo 'Building OAuth project...'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing OAuth project...'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh 'docker compose build'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'docker compose up -d'
+            }
+        }
+    }
 }
