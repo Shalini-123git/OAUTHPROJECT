@@ -1,0 +1,26 @@
+services:
+  backend:
+    build: ./server
+    container_name: oauth-backend-container
+    restart: unless-stopped
+    env_file:
+      -  ./server/.env
+    ports:
+      -  "3000:3000"
+    networks:
+      - oauth-network
+
+  frontend:
+    build: ./client
+    container_name: oauth-client-container
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - oauth-network
+    depends_on:
+      - backend
+
+networks:
+   oauth-network:
+      driver: bridge
