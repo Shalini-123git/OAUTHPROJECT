@@ -30,5 +30,11 @@ pipeline {
         	'''
             }
         }
+
+	stage('Cleanup') {
+            steps {
+                sh 'docker builder prune -af'
+            }
+        }
     }
 }
