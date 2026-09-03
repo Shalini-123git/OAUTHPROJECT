@@ -24,8 +24,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-            		cp ~/OAUTHPROJECT/server/.env server/.env
+            		cp /home/ubuntu/OAUTHPROJECT/server/.env server/.env
             		docker compose up -d
+			rm -f server/.env
         	'''
             }
         }
