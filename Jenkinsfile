@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-            		cp /home/ubuntu/OAUTHPROJECT/server/.env server/.env
+            		cp /var/lib/jenkins/deploy-secrets/server.env server/.env
             		docker compose up -d
 			rm -f server/.env
         	'''
