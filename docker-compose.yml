@@ -1,5 +1,6 @@
 services:
   backend:
+    image: shalinirajput/oauthproject-backend:${IMAGE_TAG:-latest}
     build: ./server
     container_name: oauth-backend-container
     restart: unless-stopped
@@ -11,6 +12,7 @@ services:
       - oauth-network
 
   frontend:
+    image: shalinirajput/oauthproject-frontend:${IMAGE_TAG:-latest}
     build: ./client
     container_name: oauth-client-container
     restart: unless-stopped
