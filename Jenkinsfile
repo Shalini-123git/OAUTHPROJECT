@@ -9,24 +9,10 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                sh '''
-                    curl --fail http://localhost:3000/api/top-searches
-                '''
-            }
-        }
-
         stage('Docker Build') {
             steps {
                 sh '''
-                    docker compose build
-
-                    docker tag basic-pipeline-backend:latest \
-                        shalinirajput/oauthproject-backend:build-${BUILD_NUMBER}
-
-                    docker tag basic-pipeline-frontend:latest \
-                        shalinirajput/oauthproject-frontend:build-${BUILD_NUMBER}
+                    IMAGE_TAG=build-${BUILD_NUMBER} docker compose build
                 '''
             }
         }
@@ -66,11 +52,18 @@ pipeline {
             }
         }
 
-        stage('Health Check') {
+        stage('Test') {
             steps {
                 sh '''
                     sleep 5
+                    curl --fail http://localhost:3000/api/top-searches
+                '''
+            }
+        }
 
+        stage('Health Check') {
+            steps {
+                sh '''
                     curl --fail http://localhost:3000/api/top-searches
                 '''
             }
